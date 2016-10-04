@@ -1,0 +1,39 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    margin-bottom: 10vh;
+}
+.splash-second {
+	/* Отступ для содержимого, помещенного в splash */
+	/* min-height: 475px; */
+	padding:2em 0 2em;
+	/* Картинка, которая используются для splash */
+	background-image:url(../img/header_bg_second.png);
+	/* Масштабируем картинку с сохранением пропорций */
+	background-size:cover;
+/*	background-position: center !important;*/
+	/* background-repeat: no-repeat; */
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+	/* Запрещаем фоновому изображению прокручиваться, т.е. делаем его неподвижным */
+		background-attachment:fixed; 
+	/* Цвет текста */
+	color:#fff;
+	/* Выравниваем текста внутри splash по центру */
+	text-align:center;	
+	position: relative;	
+	height: 100%;
+}
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 25vh; /*высота футера будет зависеть от высоты экрана*/
+}
+/* чтобы весь футер заливался */
+footer .row{
+    background-color: #193441;
+}

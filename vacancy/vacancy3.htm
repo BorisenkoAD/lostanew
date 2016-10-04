@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Менеджер проектов автоматизации</title>
+
+	<link href="../css/normalize.css" rel="stylesheet" type="text/css" />
+	<link href="http://allfont.ru/allfont.css?fonts=open-sans" rel="stylesheet" type="text/css" />
+	<link href="http://allfont.ru/allfont.css?fonts=open-sans-bold" rel="stylesheet" type="text/css" />
+	<link href="../fonts/MyriadPro/css/MyriadPro.css" rel="stylesheet" type="text/css" />
+	<link href="../fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="../css/bootstrap.min.css" rel="stylesheet">	
+	<link href="../css/style_vacancy.css" rel="stylesheet" type="text/css" />		
+
+</head>
+<body>
+<!-- HTML-код модального окна -->
+<div id="myModal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Заголовок модального окна -->
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title">Отправка резюме</h4>
+      </div>
+      <!-- Основное содержимое модального окна -->
+      <div class="modal-body">
+        <!-- основное содержимое (тело) модального окна -->
+        <div class="container-fluid">
+          <!-- Контейнер, в котором можно создавать классы системы сеток -->
+	  		<form enctype="multipart/form-data" action="../mail.php" method="POST">
+			<div class="form-group">
+				<label for="userfile">Не более 2Мb, MS Word 2000 - 2010, jpg</label>									
+				<input type="hidden" name="MAX_FILE_SIZE" value="1900000" />
+				<input name="userfile" type="file" />		
+			</div>		  
+          <div class="row">
+			<div class="form-group">
+				<label for="message" class="col-xs-4 control-label">Дополнительно:</label>
+				<div class="col-xs-8">						
+					<textarea maxlength="350" class="form-control form__textarea" required placeholder="Дополнительная информация, не более 350 знаков"  name="message" id="message" rows="3"></textarea>
+				</div>
+			</div>
+          </div>
+        </div>
+	</div>	  
+      <!-- Футер модального окна -->
+    <div class="modal-footer">
+		<button type="submit" class="btn btn-primary">Отправить <i class="fa fa-paper-plane" aria-hidden="true"></i>
+		</form>			
+    </div>
+    </div>
+  </div>
+</div>	
+<!-- /HTML-код модального окна -->
+	<h2>Менеджер проектов автоматизации</h2>
+<h4>Опыт работы от 1 года,<br>заработная плата 35 000 – 50 000 руб.</h4>
+									<h5>Обязанности:</h5>
+								<ul>	
+									<li>Участие в проектах модернизации и автоматизации;</li>
+									<li>Принятие технических решений по проекту;</li> 
+									<li>Описание и анализ существующих бизнес-процессов с точки зрения их последующей оптимизации/автоматизации, поддержка актуальности описаний;</li> 
+									<li>Поиск поставщиков необходимого оборудования и материалов и взаимодействие с ними;</li>
+									<li>Проведение переговоров и заключение договоров на выгодных условиях;</li>
+									<li>Постановка задач разработчикам;</li>
+									<li>Внедрение, сопровождение программных комплексов;</li>
+								</ul>
+									<h5>Требования:</h5>
+								<ul>
+									<li>Образование: высшее (предпочтение отдается кандидатам с техническим образованием);</li>
+									<li>Опыт работы от 1 года;</li>
+									<li>Аналитический склад ума;</li>
+									<li>Лидерские качества;</li>
+									<li>Нацеленность на результат;</li>
+									<li>Умение вести несколько проектов одновременно, многозадачность;</li>
+									<li>Готовность к обучению, желание развиваться, активность;</li>
+									<li>Внимательность и пунктуальность;</li>
+									<li>Высокий уровень коммуникативных навыков;</li>
+								</ul>	
+									<h5>Условия:</h5>
+								<ul>
+									<li>График: 5/2, с 9-30 до 17-30 (возможно совмещение с учебой);</li>
+									<li>Испытательный срок 1 месяц;</li>
+									<li>Оформление по ТК РФ;</li>
+									<li>Размер заработной платы определяется по результатам собеседования;</li>
+									<li>Быстрый карьерный рост;</li>
+									<li>Обучение в процессе работы;</li>
+									<li>Льготное питание;</li>
+									<li>Дружный коллектив;</li>
+									<li>В ряде случаев возможно бесплатное предоставление жилья;</li>
+									<li>Офис расположен в 10 мин. езды от ст.м. Ладожская.</li>
+								</ul>
+			<button type="submit" class="btn btn-primary">Отправить резюме				
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../js/bootstrap.min.js"></script>
+<script>
+$(document).ready(function(){
+  //при нажатию на любую кнопку, имеющую класс .btn
+  $(".btn").click(function() {
+    //открыть модальное окно с id="myModal"
+    $("#myModal").modal('show');
+  });
+});
+</script>
+</body>
+</html>
