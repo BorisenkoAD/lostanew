@@ -245,7 +245,7 @@ class auth {
 		return $r;
 	}
 }
-
+	// aplication form - анкета-заявление на вакансию
 class appForm { 
 	
 	static $error_arr=array();
@@ -275,7 +275,7 @@ class appForm {
 	protected $diplom;
 	protected $Grad_year;
 	
-	function __construct ($position, $schedule, $date_get_start, $salary_desired, $Name, $LastName, $DLastName, $Email, $Tel, $citizenship, $place_liv, $birthday, $age, $Company_name, $post, $start_job, $end_job, $responsibilities, $skills, $Institute, $speciality, $diplom, $Grad_year) {
+	function __construct ($position, $schedule, $date_get_start, $salary_desired, $Name, $LastName, $DLastName, $Email, $Tel, $citizenship, $place_liv, $birthday, $Company_name, $post, $start_job, $end_job, $responsibilities, $skills, $Institute, $speciality, $diplom, $Grad_year) {
 		
 		$this->position = $position;
 		$this->schedule = $schedule;
@@ -289,7 +289,6 @@ class appForm {
 		$this->citizenship = $citizenship;
 		$this->place_liv = $place_liv;
 		$this->birthday = $birthday;
-		$this->age = $age;
 		$this->Company_name = $Company_name;
 		$this->post = $post;
 		$this->start_job = $start_job;
@@ -303,76 +302,73 @@ class appForm {
 		
 	}
 	
-	static function getPosition() {
+	function getPosition() {
 		return $this->position;
 	}
-	static function getSchedule() {
+	function getSchedule() {
 		return $this->schedule;
 	}
-	static function getDate_get_start() {
+	function getDate_get_start() {
 		return $this->date_get_start;
 	}
-	static function getSalary_desired() {
+	function getSalary_desired() {
 		return $this->salary_desired;
 	}
-	static function getDLastName() {
+	function getDLastName() {
 		return $this->DLastName;
 	}
-	static function getBirthday() {
+	function getBirthday() {
 		return $this->birthday;
 	}	
-	static function getCitizenship() {
+	function getCitizenship() {
 		return $this->citizenship;
 	}
-	static function getPlace_liv() {
+	function getPlace_liv() {
 		return $this->place_liv;
 	}
-	static function getAge() {
+	function getAge() {
 		return $this->age;
 	}	
-	static function getCompany_name() {
+	function getCompany_name() {
 		return $this->Company_name;
 	}	
-	static function getPost() {
+	function getPost() {
 		return $this->post;
 	}	
-	static function getStart_job() {
+	function getStart_job() {
 		return $this->start_job;
 	}	
-	static function getEnd_job() {
+	function getEnd_job() {
 		return $this->end_job;
 	}	
-	static function getInstitute() {
+	function getInstitute() {
 		return $this->Institute;
 	}	
-	static function getSpeciality() {
+	function getSpeciality() {
 		return $this->speciality;
 	}	
-	static function getDiplom() {
+	function getDiplom() {
 		return $this->diplom;
 	}	
-	static function getGrad_year() {
+	function getGrad_year() {
 		return $this->Grad_year;
 	}	
-	static function getName() {
-		return $this->name;
+	function getName() {
+		return $this->Name;
 	}
-	static function getLastName() {
+	function getLastName() {
 		return $this->LastName;
 	}
-	static function getTel() {
+	function getTel() {
 		return $this->Tel;
 	}
-	static function getEmail() {
+	function getEmail() {
 		return $this->Email;
 	}
-	static function getDate() {
-		return $this->date;
-	}
-	static function getResponsibilities() {
+	function getResponsibilities() {
 		return $this->responsibilities;
 	}
-	static function getSkills() {
+	function getSkills() {
 		return $this->skills;
 	}	
 	
@@ -384,24 +380,17 @@ class appFormAction {
 	static $error='';
    
 	private $db;
-	
-	
+	private $appForm;
+		
     function __construct($param) {
     	$this->db = $param;
     }
 	
-	function appFormView ($appForm) {
-		
-		$sql="SELECT * FROM anketa WHERE deleted = 0 order by id desc";
-		$stmt = $this->db->query($sql);
-		while ($row=$stmt->fetch(PDO::FETCH_ASSOC)) {
-			$this->result[] = $row;			
-		}
-		return $this->result;
-		
+	function appFormGet () {
+				
 	}
 	
-	 /* Метод добавления анкеты с формы на сайте
+	 /* appFormAdd - Метод добавления анкеты с формы на сайте
 	 * @param		$Position			Наименование вакансии
 	 * @param		$Schedule			График работы    
 	 * @param		$Date_get_start		Дата начала работы
@@ -430,34 +419,33 @@ class appFormAction {
 	 */	
 	function appFormAdd ($appForm) {
 				
-		$position = 		appForm::getPosition(); 
-		$schedule = 		appForm::getSchedule(); 
-		$date_get_start = 	appForm::getDate_get_start(); 
-		$salary_desired = 	appForm::getSalary_desired(); 
-		$DLastName = 		appForm::getDLastName(); 
-		$citizenship = 		appForm::getCitizenship();			
- 		$place_liv = 		appForm::getPlace_liv();		
-		$Company_name = 	appForm::getCompany_name();		
-		$post = 			appForm::getPost(); 		
-		$start_job = 		appForm::getStart_job();		
-		$end_job = 			appForm::getEnd_job(); 		
-		$Institute = 		appForm::getInstitute(); 		
-		$speciality = 		appForm::getSpeciality(); 		
-		$diplom = 			appForm::getDiplom(); 		
-		$Grad_year = 		appForm::getGrad_year(); 		
-		$Name = 			appForm::getName();	
-		$LastName = 		appForm::getLastName();
-		$Tel = 				appForm::getTel(); 
-		$Email = 			appForm::getEmail();
-		$birthday			appForm::getBirthday();
-		$age = 				appForm::getAge(); 
-		$date = 			appForm::getDate(); 
-		$responsibilities = appForm::getResponsibilities(); 
-		$skills = 			appForm::getSkills(); 	
+		$position = 		$appForm->getPosition(); 
+		$schedule = 		$appForm->getSchedule(); 
+		$date_get_start = 	$appForm->getDate_get_start(); 
+		$salary_desired = 	$appForm->getSalary_desired(); 
+		$DLastName = 		$appForm->getDLastName(); 
+		$citizenship = 		$appForm->getCitizenship();			
+ 		$place_liv = 		$appForm->getPlace_liv();		
+		$Company_name = 	$appForm->getCompany_name();		
+		$post = 			$appForm->getPost(); 		
+		$start_job = 		$appForm->getStart_job();		
+		$end_job = 			$appForm->getEnd_job(); 		
+		$Institute = 		$appForm->getInstitute(); 		
+		$speciality = 		$appForm->getSpeciality(); 		
+		$diplom = 			$appForm->getDiplom(); 		
+		$Grad_year = 		$appForm->getGrad_year(); 		
+		$Name = 			$appForm->getName();	
+		$LastName = 		$appForm->getLastName();
+		$Tel = 				$appForm->getTel(); 
+		$Email = 			$appForm->getEmail();
+		$birthday =			$appForm->getBirthday();
+		$responsibilities = $appForm->getResponsibilities(); 
+		$skills = 			$appForm->getSkills(); 	
 
 		$sql = "INSERT INTO anketa (position, schedule, date_get_start, salary_desired, Name, LastName, DLastName, Email, Tel, citizenship, place_liv, birthday, age, Company_name, post, start_job, end_job, responsibilities, skills, Institute, speciality, diplom, Grad_year) VALUES (:position, :schedule, :date_get_start, :salary_desired, :Name,:LastName, :DLastName, :Email, :Tel, :citizenship,:place_liv,:birthday, (SELECT TIMESTAMPDIFF(YEAR, :birthday, CURDATE())), :Company_name, :post, :start_job, :end_job, :responsibilities, :skills, :Institute, :speciality, :diplom, :Grad_year)";
 		
 		$handle = $this->db->prepare($sql);
+		
 		$handle->bindParam(':position', $position);
 		$handle->bindParam(':schedule', $schedule);
 		$handle->bindParam(':date_get_start', $date_get_start);
@@ -482,7 +470,11 @@ class appFormAction {
 		$handle->bindParam(':Grad_year', $Grad_year);
 		
 		if ($handle->execute()) 
-		{return true} else {return false}
+		{
+			return true;
+		} else {
+			return false;
+			}
 	
 	}	
 	

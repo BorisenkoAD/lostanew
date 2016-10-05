@@ -4,10 +4,10 @@ if (isset($_GET['exit'])) $auth->exit_user();	//~ user exit
 $authorized = false;
 $r='';
 $exit='';
-$anketa = new anketa($param);
+/* $anketa = new anketa($param);
 $result = $anketa->view();
 
-	$result = $anketa->view();
+	$result = $anketa->view(); */
 	//~ Check auth
 	 if ($auth->check()) {
 		$authorized = true;		 
