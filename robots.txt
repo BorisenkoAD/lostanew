@@ -1,0 +1,4 @@
+﻿User-Agent: *
+
+Disallow: /admin
+Sitemap: http://lostaspb.ru/sitemap.xml

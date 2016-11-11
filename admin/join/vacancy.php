@@ -1,23 +1,55 @@
+<?php
+include_once "conf.php";
+
+if(isset($_POST['send'])) {
+	$appForm = new 	appForm(
+					$_POST['position'],
+					$_POST['schedule'],
+					$_POST['date_get_start'],
+					$_POST['salary_desired'],
+					$_POST['Name'],
+					$_POST['LastName'],
+					$_POST['DLastName'],
+					$_POST['Email'],
+					$_POST['Tel'],
+					$_POST['citizenship'],
+					$_POST['place_liv'],
+					$_POST['birthday'],
+					$_POST['Company_name'],
+					$_POST['post'],
+					$_POST['start_job'],
+					$_POST['end_job'],
+					$_POST['responsibilities'],
+					$_POST['skills'],
+					$_POST['Institute'],
+					$_POST['speciality'],
+					$_POST['diplom'],
+					$_POST['Grad_year']					
+					);
+	if($appFormAction->appFormAdd($appForm)) {
+		echo "Form added!!";
+		print_r($appForm);
+	} else {
+		echo "Form dont added!!";
+	}
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-	<link rel="shortcut icon" href="favicon.png" type="image/png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Наши вакансии, ЗАО Лоста</title>
-	<meta name="description" content="Компания ЛОСТА предлагает молодым амбициозным людям раскрыть в себе таланты лидера и управленца. Смотри вакансии, пиши, звони!"/>
-	<meta name="keywords" content="лоста, вакансии, работа, Менеджер строительных проектов, Помощник управляющего проектами, Помощник управляющего проектами автоматизации, Менеджер технических проектов, Помощник руководителя технических проектов, Менеджер по развитию, Специалист по внедрению АСУ ТП, Креативный менеджер, Технический писатель, Аналитик, Инженер, Электромонтер/Электромонтажник, Ведущий юрист, IT-специалист, Инженер проектировщик ОВ ВК, Архитектор, Офис менеджер, Заведующий хозяйством в службу эксплуатации, Главный инженер проекта, HR менеджер, Инженер технического надзора, Конструктор КЖ КМ" />
-	<link href="css/normalize.css" rel="stylesheet" type="text/css" />
-	<link href="http://allfont.ru/allfont.css?fonts=open-sans" rel="stylesheet" type="text/css" />
-	<link href="http://allfont.ru/allfont.css?fonts=open-sans-bold" rel="stylesheet" type="text/css" />
-	<link href="fonts/MyriadPro/css/MyriadPro.css" rel="stylesheet" type="text/css" />
-	<link href="fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <link href="css/bootstrap.min.css" rel="stylesheet">	
-	<link href="css/style.css" rel="stylesheet" type="text/css" />		
-	<link href="css/navbar.css" rel="stylesheet" type="text/css" />	
-	<link rel="stylesheet" href="libs/fancybox/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
+    <title>Вакансии</title>
+
+	<link href="../../css/normalize.css" rel="stylesheet" type="text/css" />
+	<link href="../../fonts/MyriadPro/css/MyriadPro.css" rel="stylesheet" type="text/css" />
+	<link href="../../fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">	
+	<link href="../../css/style.css" rel="stylesheet" type="text/css" />		
+	<link href="../../css/navbar.css" rel="stylesheet" type="text/css" />		
+	<link rel="stylesheet" href="../../libs/fancybox/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen" />
 	
  	<!-- <link href="css/ui.totop.css" rel="stylesheet" media="screen,projection" />		 -->
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -42,7 +74,7 @@
         <!-- основное содержимое (тело) модального окна -->
         <div class="container-fluid">
           <!-- Контейнер, в котором можно создавать классы системы сеток -->
-						<form class="form-horizontal" method="post" action="anketa.php">			
+						<form class="form-horizontal" method="post" action="">			
 								<div class="row">	
 									<div class="col-sm-10">
 										<div class="form-group">
@@ -336,7 +368,7 @@
 										<div class="form-group">
 											<label for="Grad_year" class="col-xs-4 control-label">Год окончания:</label>
 											<div class="col-xs-8">
-												<input type="month" class="form-control form__input" name="Grad_year" id="Grad_year" />												
+												<input type="month" class="form-control form__input" name="Grad_year" id="Grad_year" />	
 											</div>
 										</div>
 									</div>							
@@ -676,10 +708,10 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery.scrollUp.min.js" type="text/javascript"></script>	
-	<script src="libs/stellar/jquery.stellar.js"></script>		
-	<script type="text/javascript" src="libs/fancybox/jquery.fancybox.pack.js?v=2.1.5"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+	<script src="../../js/jquery.scrollUp.min.js" type="text/javascript"></script>	
+	<script src="../..libs/stellar/jquery.stellar.js"></script>		
+	<script type="text/javascript" src="../../libs/fancybox/jquery.fancybox.pack.js?v=2.1.5"></script>
 	<!-- <script src="js/myscripts.js" type="text/javascript"></script>			 -->
 <script>
 // всплывающие окна с текстом вакансий

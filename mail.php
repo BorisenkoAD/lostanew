@@ -1,5 +1,5 @@
 <?php
-	$uploaddir = '/var/www/vhosts/22/137870/webspace/httpdocs/dev.lostaspb.ru/tmp/';
+	$uploaddir = '/var/www/vhosts/22/137870/webspace/httpdocs/lostaspb.ru/tmp/';
 	$uploadfile = $uploaddir . basename($_FILES['userfile']['name']);
 	$mes = " ";
 
@@ -38,13 +38,13 @@ try {
     if (false === $ext = array_search(
         $finfo->file($_FILES['userfile']['tmp_name']),
         array(
+			'pdf' => 'application/pdf',
             'jpg' => 'image/jpeg',
             'png' => 'image/png',
             'gif' => 'image/gif',
 			'doc' => 'application/msword',
-			'docx'=> 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-			
-        ),
+			'docx'=> 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+		),
         true
     )) {
         throw new RuntimeException('Неверный формат.');	
@@ -62,9 +62,8 @@ try {
         throw new RuntimeException('Ваше сообщение успешно отправлено.');
 
  } catch (RuntimeException $e) {
-
-
 ?>
+
     <!DOCTYPE html>
     <html lang="en">
 
@@ -84,9 +83,9 @@ try {
 					<h2 class="text-center"><strong><?echo $e->getMessage();}?></strong></h2>
 <?
 //---------------------------------
-$filename = $uploadfile;//$_FILES['userfile']['name']; //Имя файла для прикрепления $uploadfile;
-$to = "info@lostaspb.ru";
-$from = "info@lostaspb.ru";
+$filename = $uploadfile; // $_FILES['userfile']['name']; //Имя файла для прикрепления $uploadfile;
+$to = "info@lostaspb.ru"; 
+$from="admin@lostaspb.ru";
 $subject = "Прикрепленное резюме с сайта";
 $message = $_POST['message'];
 $subj = "=?utf-8?B?".base64_encode($subject)."?=";
@@ -125,8 +124,8 @@ mail($to, $subj, $msg, $headers);
 		<!-- Include all compiled plugins (below), or include individual files as needed -->
 		<script src="js/bootstrap.min.js"></script>
         <script type="text/javascript">
-       /*    setTimeout('location.replace("../vacancy.html")', 3000); */
-        </script>
+/*             setTimeout('location.replace("/vacancy.html")', 3000);
+ */        </script>
 
     </body>
 </html>

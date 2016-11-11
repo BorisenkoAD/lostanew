@@ -6,7 +6,7 @@
 	private $dbpassword;
 	
 	static function connect($dsn, $dblogin, $dbpassword) {
-		$db = new PDO($dsn, $dblogin, $dbpassword, array(PDO::ATTR_PERSISTENT => true));
+		$db = new PDO($dsn, $dblogin, $dbpassword, array(PDO::ATTR_ERRMODE=> PDO::ERRMODE_EXCEPTION, PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC));
 		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$stmt = $db->prepare("SET NAMES 'utf8'");
 		$stmt->execute();
@@ -251,54 +251,56 @@ class appForm {
 	static $error_arr=array();
 	static $error='';
 	
-	protected $position;
-	protected $schedule;
-	protected $date_get_start;
-	protected $salary_desired;
-	protected $Name;
-	protected $LastName;
-	protected $DLastName;
-	protected $Email;
-	protected $Tel;
-	protected $citizenship;
-	protected $place_liv;
-	protected $birthday;
-	protected $age;
-	protected $Company_name;
-	protected $post;
-	protected $start_job;
-	protected $end_job;
-	protected $responsibilities;
-	protected $skills;
-	protected $Institute;
-	protected $speciality;
-	protected $diplom;
-	protected $Grad_year;
+ 	 protected $position;
+	 protected $schedule;
+	 protected $date_get_start;
+	 protected $salary_desired;
+	 protected $name;
+	 protected $lastname;
+	 protected $dlastname;
+	 protected $email;
+	 protected $tel;
+	 protected $citizenship;
+	 protected $place_liv;
+	 protected $birthday;
+	 protected $company_name;
+	 protected $post;
+	 protected $age;
+	 protected $start_job;
+	 protected $end_job;
+	 protected $responsibilities;
+	 protected $skills;
+	 protected $institute;
+	 protected $speciality;
+	 protected $diplom;
+	 protected $grad_year;
+	 protected $id;
+	 protected $date;
 	
-	function __construct ($position, $schedule, $date_get_start, $salary_desired, $Name, $LastName, $DLastName, $Email, $Tel, $citizenship, $place_liv, $birthday, $Company_name, $post, $start_job, $end_job, $responsibilities, $skills, $Institute, $speciality, $diplom, $Grad_year) {
+ 	function __construct ($position=null, $schedule=null, $date_get_start=null, $salary_desired=null, $name=null, $lastname=null, $dlastname=null, $email=null, $tel=null, $citizenship=null, $place_liv=null, $birthday=null, $company_name=null, $post=null, $start_job=null, $end_job=null, $responsibilities=null, $skills=null, $institute=null, $speciality=null, $diplom=null, $grad_year=null) {
 		
-		$this->position = $position;
-		$this->schedule = $schedule;
-		$this->date_get_start = $date_get_start;
-		$this->salary_desired = $salary_desired;
-		$this->Name = $Name;
-		$this->LastName = $LastName;
-		$this->DLastName = $DLastName;
-		$this->Email = $Email;
-		$this->Tel = $Tel;
-		$this->citizenship = $citizenship;
-		$this->place_liv = $place_liv;
-		$this->birthday = $birthday;
-		$this->Company_name = $Company_name;
-		$this->post = $post;
-		$this->start_job = $start_job;
-		$this->end_job = $end_job;
-		$this->responsibilities = $responsibilities;
-		$this->skills = $skills;
-		$this->Institute = $Institute;
-		$this->speciality = $speciality;
-		$this->diplom = $diplom;
-		$this->Grad_year = $Grad_year;
+  		if ($position!==null) 			$this->position = $position;
+		if ($schedule!==null) 			$this->schedule = $schedule;
+		if ($date_get_start!==null) 	$this->date_get_start = $date_get_start;
+		if ($salary_desired!==null) 	$this->salary_desired = $salary_desired;
+		if ($name!==null) 				$this->name = $name;
+		if ($lastname!==null) 			$this->lastname = $lastname;
+		if ($dlastname!==null) 			$this->dlastname = $dlastname;
+		if ($email!==null) 				$this->email = $email;
+		if ($tel!==null) 				$this->tel = $tel;
+		if ($citizenship!==null) 		$this->citizenship = $citizenship;
+		if ($place_liv!==null) 			$this->place_liv = $place_liv;
+		if ($birthday!==null) 			$this->birthday = $birthday;
+		if ($company_name!==null) 		$this->company_name = $company_name;
+		if ($post!==null) 				$this->post = $post;
+		if ($start_job!==null) 			$this->start_job = $start_job;
+		if ($end_job!==null) 			$this->end_job = $end_job;
+		if ($responsibilities!==null) 	$this->responsibilities = $responsibilities;
+		if ($skills!==null) 			$this->skills = $skills;
+		if ($institute!==null) 			$this->institute = $institute;
+		if ($speciality!==null) 		$this->speciality = $speciality;
+		if ($diplom!==null) 			$this->diplom = $diplom;
+		if ($grad_year!==null) 			$this->grad_year = $grad_year;  		
 		
 	}
 	
@@ -315,7 +317,7 @@ class appForm {
 		return $this->salary_desired;
 	}
 	function getDLastName() {
-		return $this->DLastName;
+		return $this->dlastname;
 	}
 	function getBirthday() {
 		return $this->birthday;
@@ -330,7 +332,7 @@ class appForm {
 		return $this->age;
 	}	
 	function getCompany_name() {
-		return $this->Company_name;
+		return $this->company_name;
 	}	
 	function getPost() {
 		return $this->post;
@@ -342,7 +344,7 @@ class appForm {
 		return $this->end_job;
 	}	
 	function getInstitute() {
-		return $this->Institute;
+		return $this->institute;
 	}	
 	function getSpeciality() {
 		return $this->speciality;
@@ -351,19 +353,19 @@ class appForm {
 		return $this->diplom;
 	}	
 	function getGrad_year() {
-		return $this->Grad_year;
+		return $this->grad_year;
 	}	
 	function getName() {
-		return $this->Name;
+		return $this->name;
 	}
 	function getLastName() {
-		return $this->LastName;
+		return $this->lastname;
 	}
 	function getTel() {
-		return $this->Tel;
+		return $this->tel;
 	}
 	function getEmail() {
-		return $this->Email;
+		return $this->email;
 	}
 	function getResponsibilities() {
 		return $this->responsibilities;
@@ -371,23 +373,62 @@ class appForm {
 	function getSkills() {
 		return $this->skills;
 	}	
-	
+	function getId() {
+		return $this->id;
+	}
+	function getDate() {
+		return $this->date;
+	}	
 }
 
 class appFormAction {
 	
 	static $error_arr=array();
 	static $error='';
-   
+	
 	private $db;
-	private $appForm;
 		
     function __construct($param) {
     	$this->db = $param;
     }
 	
+	/*appFormPrint метод вывода на печать анкеты
+	*@param		$id			требуемая запись
+	* @return		bollean			return true or false	
+	*/
+	function appFormPrint ($id) {
+		
+	}
+	/*appFormSend метод отправки на почту анкеты
+	*@param		$id			требуемая запись
+	* @return		bollean			return true or false
+	*/
+	function appFormSend ($id) {
+		
+	}
+	/*appFormDelete метод удаления анкеты
+	*@param		$id			требуемая запись
+	 * @return		bollean			return true or false	
+	*/
+	function appFormDelete ($id) {
+		$sql = "UPDATE anketa SET deleted = 1 WHERE id = ?";	
+		$handle = $this->db->prepare($sql);		
+		$handle->bindParam(1, $id, PDO::PARAM_INT);		
+		if ($handle->execute()) 
+			{
+			header("Location: index.php");
+			return true;
+			} else {
+			return false;
+			}		
+	}
+	
 	function appFormGet () {
-				
+		$sql="SELECT position, schedule, date_get_start, salary_desired, name, lastname, dlastname, email, tel, citizenship, place_liv, birthday, age, company_name, post, start_job, end_job, responsibilities, skills, institute, speciality, diplom, grad_year, id FROM anketa WHERE deleted = 0 order by id desc";
+		$data = $this->db->query($sql);
+		$data->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'appForm');
+		$obj = $data->fetchall();
+		return $obj;
 	}
 	
 	 /* appFormAdd - Метод добавления анкеты с формы на сайте
@@ -423,26 +464,26 @@ class appFormAction {
 		$schedule = 		$appForm->getSchedule(); 
 		$date_get_start = 	$appForm->getDate_get_start(); 
 		$salary_desired = 	$appForm->getSalary_desired(); 
-		$DLastName = 		$appForm->getDLastName(); 
+		$dlastname = 		$appForm->getDLastName(); 
 		$citizenship = 		$appForm->getCitizenship();			
  		$place_liv = 		$appForm->getPlace_liv();		
-		$Company_name = 	$appForm->getCompany_name();		
+		$company_name = 	$appForm->getCompany_name();		
 		$post = 			$appForm->getPost(); 		
 		$start_job = 		$appForm->getStart_job();		
 		$end_job = 			$appForm->getEnd_job(); 		
-		$Institute = 		$appForm->getInstitute(); 		
+		$institute = 		$appForm->getInstitute(); 		
 		$speciality = 		$appForm->getSpeciality(); 		
 		$diplom = 			$appForm->getDiplom(); 		
-		$Grad_year = 		$appForm->getGrad_year(); 		
-		$Name = 			$appForm->getName();	
-		$LastName = 		$appForm->getLastName();
-		$Tel = 				$appForm->getTel(); 
-		$Email = 			$appForm->getEmail();
+		$grad_year = 		$appForm->getGrad_year(); 		
+		$name = 			$appForm->getName();	
+		$lastname = 		$appForm->getLastName();
+		$tel = 				$appForm->getTel(); 
+		$email = 			$appForm->getEmail();
 		$birthday =			$appForm->getBirthday();
 		$responsibilities = $appForm->getResponsibilities(); 
 		$skills = 			$appForm->getSkills(); 	
 
-		$sql = "INSERT INTO anketa (position, schedule, date_get_start, salary_desired, Name, LastName, DLastName, Email, Tel, citizenship, place_liv, birthday, age, Company_name, post, start_job, end_job, responsibilities, skills, Institute, speciality, diplom, Grad_year) VALUES (:position, :schedule, :date_get_start, :salary_desired, :Name,:LastName, :DLastName, :Email, :Tel, :citizenship,:place_liv,:birthday, (SELECT TIMESTAMPDIFF(YEAR, :birthday, CURDATE())), :Company_name, :post, :start_job, :end_job, :responsibilities, :skills, :Institute, :speciality, :diplom, :Grad_year)";
+		$sql = "INSERT INTO anketa (position, schedule, date_get_start, salary_desired, name, lastname, dlastname, email, tel, citizenship, place_liv, birthday, age, company_name, post, start_job, end_job, responsibilities, skills, institute, speciality, diplom, grad_year) VALUES (:position, :schedule, :date_get_start, :salary_desired, :name,:lastname, :dlastname, :email, :tel, :citizenship,:place_liv,:birthday, (SELECT TIMESTAMPDIFF(YEAR, :birthday, CURDATE())), :company_name, :post, :start_job, :end_job, :responsibilities, :skills, :institute, :speciality, :diplom, :grad_year)";
 		
 		$handle = $this->db->prepare($sql);
 		
@@ -450,24 +491,24 @@ class appFormAction {
 		$handle->bindParam(':schedule', $schedule);
 		$handle->bindParam(':date_get_start', $date_get_start);
 		$handle->bindParam(':salary_desired', $salary_desired);
-		$handle->bindParam(':Name', $Name);
-		$handle->bindParam(':LastName', $LastName);
-		$handle->bindParam(':DLastName', $DLastName);
-		$handle->bindParam(':Email', $Email);
-		$handle->bindParam(':Tel', $Tel);
+		$handle->bindParam(':name', $name);
+		$handle->bindParam(':lastname', $lastname);
+		$handle->bindParam(':dlastname', $dlastname);
+		$handle->bindParam(':email', $email);
+		$handle->bindParam(':tel', $tel);
 		$handle->bindParam(':citizenship', $citizenship);
 		$handle->bindParam(':place_liv', $place_liv);
 		$handle->bindParam(':birthday', $birthday);
-		$handle->bindParam(':Company_name', $Company_name);
+		$handle->bindParam(':company_name', $company_name);
 		$handle->bindParam(':post', $post);
 		$handle->bindParam(':start_job', $start_job);
 		$handle->bindParam(':end_job', $end_job);
 		$handle->bindParam(':responsibilities', $responsibilities);
 		$handle->bindParam(':skills', $skills);	
-		$handle->bindParam(':Institute', $Institute);
+		$handle->bindParam(':institute', $institute);
 		$handle->bindParam(':speciality', $speciality);
 		$handle->bindParam(':diplom', $diplom);
-		$handle->bindParam(':Grad_year', $Grad_year);
+		$handle->bindParam(':grad_year', $grad_year);
 		
 		if ($handle->execute()) 
 		{
@@ -491,52 +532,103 @@ class vacancyAction {
     	$this->db = $param;
     }
 		
-	function addVacancy ($vacancy) {
+	function vacancyAdd ($vacancy) {
 
-		$name = vacancy::getName();
-		$desc = vacancy::getDesc();
-		$resp = vacancy::getResp();	
-		// передача данных в процедуру
+	$this->exp=$exp;
+	$this->edu=$edu;
+	$this->salary=$salary;			
+	$this->cond=$cond;
+	$this->name=$name;
+	$this->desc=$desc;
+	$this->requir=$requir;		
+	$this->dept=$dept;
+	$this->deptUser=$deptUser;
+	$this->contacts=$contacts;
+	$login_user = $_SESSION['login_user'];
+	
+	
+	$sql="INSERT into vacancy (experience, education, salary, conditions, name, description, requirements, login_user)";
+	$handle = $this->db->prepare($sql);
+		
+		$handle->bindParam(':experience', $position);
+		$handle->bindParam(':education', $schedule);
+		$handle->bindParam(':salary', $date_get_start);
+		$handle->bindParam(':conditions', $salary_desired);
+		$handle->bindParam(':name', $name);
+		$handle->bindParam(':description', $description);
+		$handle->bindParam(':requirements', $dlastname);	
 	}
 	
-	function delete ($vacancy) {
+	function vacancyDelete ($vacancy) {
 
 		$name = vacancy::getName();
 		$desc = vacancy::getDesc();
-		$resp = vacancy::getResp();	
+		$requir = vacancy::getRequir();	
 		// передача данных в процедуру
 	}	
+	
+	function vacancyEdit ($vacancy) {}
 }
+
 class vacancy {
 		
 	static $error_arr=array();
-	static $error='';	
-						
-	protected $name;	// наименование вакансии
-	protected $desc;	// описание вакансии 
-	protected $resp;	// навыки вакансии
+	static $error='';
 	
-	function __construct ($name, $desc, $resp) {
+	protected $exp;		// опыт работы
+	protected $edu;		// образование
+	protected $salary;	// ЗП
+	protected $cond;	// условия
+	protected $name;	// наименование вакансии
+	protected $desc;	// обязанности вакансии 
+	protected $requir;	// требования вакансии
+	protected $deptUser;// сотрудник ОП - по сотруднику узнаем какой отдел, контакты и прочую служебную инфу
 		
-		$this->name=$name;
-		$this->desc=$desc;
-		$this->resp=$resp;		
+	function __construct ($exp=null, $edu=null, $salary=null, $cond=null, $name=null, $desc=null, $requir=null, $deptUser=null) {
+		
+		if ($exp!==null) 			$this->exp=$exp;
+		if ($edu!==null) 			$this->edu=$edu;
+		if ($salary!==null) 		$this->salary=$salary;			
+		if ($cond!==null) 			$this->cond=$cond;
+		if ($name!==null) 			$this->name=$name;
+		if ($desc!==null) 			$this->desc=$desc;
+		if ($requir!==null) 		$this->requir=$requir;		
+		if ($deptUser!==null) 		$this->deptUser=$deptUser;
 
-		return $vacancy;
 	}
 	
-	static function getName() {
+	function getExp() {
+		return $this->exp;
+	}	
+	function getEdu() {
+		return $this->edu;
+	}
+	function getCond() {
+		return $this->cond;
+	}	
+	function getSalary() {
+		return $this->salary;
+	}			
+	function getName() {
 		return $this->name;
 	}
-	static function getDesc() {
+	function getDesc() {
 		return $this->desc;
 	}
-	static function getResp() {
+	function getResp() {
 		return $this->resp;
-	}	
-}
-class profile {
+	}
+	function getDept() {
+		return $this->dept;
+	}
+	function getDeptUser() {
+		return $this->deptUser;
+	}
+	function getContacts() {
+		return $this->contacts;
+	}
 	
-	
 }
+
+class profile {}
 ?>

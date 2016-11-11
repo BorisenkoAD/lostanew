@@ -41,6 +41,8 @@ a:active{
     color: #49423d;
     text-decoration: none;
 }
+.btn .btn2 {}
+
 .nav-pills>li>a {
 	color: #fff;
     background-color: #353535;

@@ -5,11 +5,13 @@ include "dbLib.php";
 <html lang="en">
 <head>
     <meta charset="utf-8">
+	<link rel="shortcut icon" href="favicon.png" type="image/png">	
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Лоста - место, где реализуются идеи</title>
-
+    <title>ЗАО Лоста - место, где реализуются идеи</title>
+	<meta name="description" content="Мы управляем бизнесом! Компания ЛОСТА предлагает молодым амбициозным людям раскрыть в себе таланты лидера и управленца. Смотри вакансии, пиши, звони!"/>
+	<meta name="keywords" content="ЛОСТА, вакансии, работа, Менеджер строительных проектов, Помощник управляющего проектами, Помощник управляющего проектами автоматизации, Менеджер технических проектов, Помощник руководителя технических проектов, Менеджер по развитию, Специалист по внедрению АСУ ТП, Креативный менеджер, Технический писатель, Аналитик, Инженер, Электромонтер/Электромонтажник, Ведущий юрист, IT-специалист, Инженер проектировщик ОВ ВК, Архитектор, Офис менеджер, Заведующий хозяйством в службу эксплуатации, Главный инженер проекта, HR менеджер, Инженер технического надзора, Конструктор КЖ КМ" />
 	<link href="css/normalize.css" rel="stylesheet" type="text/css" />
 	<link href="http://allfont.ru/allfont.css?fonts=open-sans" rel="stylesheet" type="text/css" />
 	<link href="http://allfont.ru/allfont.css?fonts=open-sans-bold" rel="stylesheet" type="text/css" />
@@ -417,7 +419,7 @@ include "dbLib.php";
 		<div class="row"><img src="img/hr.png"></div>
 		<div class="row"><h4>Мы всегда с нетерпением ждём Ваших отзывов!</h4></div>		
  		<div id="owl-reviews" class="row padding-top-40 owl-carousel" style="left: 20px;">
-		<?php $stmt = $connection->query('SELECT * FROM reviews WHERE status = 1');
+		<?php $stmt = $connection->query('SELECT * FROM reviews WHERE status = 1 ORDER BY date');
 			while($row = $stmt->fetch(PDO::FETCH_ASSOC))
 			{ 
 				?>
@@ -519,35 +521,35 @@ include "dbLib.php";
 		<div class="row">
 			<div class="col-xs-6">
 			<div class="form-group">
-				<label for="LastName" class="col-xs-4 control-label">Фамилия:</label>
+				<label for="lastname" class="col-xs-4 control-label">Фамилия:</label>
 				<div class="col-xs-8">
-					<input type="text" class="form-control" name="LastName" id="LastName" placeholder="Введите Фамилию">
+					<input type="text" class="form-control" name="lastname" id="lastname" placeholder="Введите Фамилию">
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="Name" class="col-xs-4 control-label">Имя: <span style="color:red;">*</span></label>
+				<label for="name" class="col-xs-4 control-label">Имя: <span style="color:red;">*</span></label>
 				<div class="col-xs-8">
-					<input type="text" class="form-control" required id="Name" name="Name" placeholder="Введите Имя">
+					<input type="text" class="form-control" required id="name" name="name" placeholder="Введите Имя">
 				</div>
 			</div>		
 			<div class="form-group">
-				<label for="Email" class="col-xs-4 control-label">Адрес email: <span style="color:red;">*</span></label>
+				<label for="email" class="col-xs-4 control-label">Адрес email: <span style="color:red;">*</span></label>
 				<div class="col-xs-8">
-					<input type="email" class="form-control" name="Email" id="Email" required placeholder="Введите email">
+					<input type="email" class="form-control" name="email" id="email" required placeholder="Введите email">
 				</div>
 			</div>		
 		</div>
 		<div class="col-xs-6">
 			<div class="form-group center-block">
-				<label for="Text" class="col-xs-0 control-label pull-left"><span style="color:red;">*</span></label>
+				<label for="text" class="col-xs-0 control-label pull-left"><span style="color:red;">*</span></label>
 				<div class="col-xs-8">
-					<textarea class="form-control" required name="Text" id="Text" rows="6"></textarea>
+					<textarea class="form-control" required name="text" id="text" rows="6"></textarea>
 					<!-- <input type="textarea" class="form-control" id="inputMessage" placeholder="Введите email"> -->
 				</div>
 			</div>			
 		</div>
 		</div>
-		<button type="submit" class="btn btn-default">Отправить</button>	
+		<button type="submit" class="btn2 btn-default">Отправить</button>	
 		</form>
 	</div>
 </section>

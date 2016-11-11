@@ -25,12 +25,12 @@ $message= substr(trim(nl2br($_POST['message'])), 0, 1100);
 
 $res->execute();
 
-$mess = "Оля, есть новый отзыв, сходи посмотри";
+//$mess = $message;
 $subj = "Отзыв с сайта lostaspb.ru";
 $to = "info@lostaspb.ru"; 
 $from="admin@lostaspb.ru";
 $headers = "From: $from\nReply-To: $from\n";
-if (!mail($to, $subj, $mess, $headers)){
+if (!mail($to, $subj, $message, $headers)){
 	throw new RuntimeException('Ваш отзыв не отправлен.');
     }
 	throw new RuntimeException('Ваш отзыв отправлен. Через некоторое время от появится на сайте, спасибо.');

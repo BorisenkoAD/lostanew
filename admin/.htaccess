@@ -1,4 +1,0 @@
-AuthType Basic
-AuthName "Admin Panel"
-AuthUserFile /var/www/vhosts/22/137870/webspace/httpdocs/dev.lostaspb.ru/admin/.htpasswd
-Require valid-user

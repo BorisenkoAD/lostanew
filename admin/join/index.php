@@ -1,27 +1,22 @@
 <?php
 include_once 'conf.php';
-if (isset($_GET['exit'])) $auth->exit_user();	//~ user exit
+if (isset($_GET['exit'])) $auth->exit_user();	//~ выход пользователя
 $authorized = false;
 $r='';
 $exit='';
-/* $anketa = new anketa($param);
-$result = $anketa->view();
-
-	$result = $anketa->view(); */
-	//~ Check auth
-	 if ($auth->check()) {
-		$authorized = true;		 
-		$r.='<div class="col-sm-10">
-			Привет '.$_SESSION['login_user'].
-			'</div>';	 	 
-		$exit = '<a href="?exit">Выход</a>';
-		$title='Добро пожаловать!';
-	}else {
+if ($auth->check()) {	//~ проверка авторизации
+	$authorized = true;		 
+	$r.='<div class="col-sm-10">
+		Привет '.$_SESSION['login_user'].
+		'</div>';	 	 
+	$exit = '<a href="?exit">Выход</a>';
+	$title='Добро пожаловать '.$_SESSION['login_user'];
+}else {
 		header("Location: signin.php");
-	}
+}
 
-	
-if (isset($_GET['delete'])) $anketa->delete($_GET['delete']);	//~ anketa delete
+$a = $appFormAction->appFormGet();	
+if (isset($_GET['delete'])) $appFormAction->appFormDelete($_GET['delete']);	//~ удаление анкеты
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,13 +34,6 @@ if (isset($_GET['delete'])) $anketa->delete($_GET['delete']);	//~ anketa delete
 	<link href="../../css/style.css" rel="stylesheet" type="text/css" />		
 	<link href="../../css/navbar.css" rel="stylesheet" type="text/css" />			
 
- 	<!-- <link href="css/ui.totop.css" rel="stylesheet" media="screen,projection" />		 -->
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#navbar-example">
 <header>
@@ -99,33 +87,33 @@ if (isset($_GET['delete'])) $anketa->delete($_GET['delete']);	//~ anketa delete
 </a>
 	<div class="container">	
 		<div class="question">
-			<?if ($authorized){?>		
-				<div class="row padding-top-40 grid">
-				<?foreach ($result as $key => $value){?>					
-					<div class="col-xs-6 col-sm-4 col-md-3 reviews-block-admin grid-item">	
+			<?php if ($authorized): ?>
+				<div class="row padding-top-40 grid">	
+					<?php for($i=0; $i<(count($a)); $i++) {?>				
+					<div class="col-xs-6 col-sm-3 col-md-3 reviews-block-admin grid-item">	
 					
 						<div class="text">			
-							<p class="name text-left"><strong><?php echo $value["Name"]?> <?php echo $value["LastName"]?></strong></p>
-							<p class="date text-left"><strong><?php echo $value["Tel"]?></strong></p>
-							<p class="date text-left"><strong><a href="mailto:<?php echo $value["Email"]?>"><?php echo $value["Email"]?></a></strong></p>
-							<p class="age text-left"><strong>Возраст: <?php echo $value["age"] ?></strong></p>				
-							<p class="date text-left">Дата заполнения: <?php echo $value["date"]?></p>	
+							<p class="name text-left"><strong><?php echo $a[$i]->getName()?> <?php echo $a[$i]->getLastName()?></strong></p>
+							<p class="date text-left"><strong><?php echo $a[$i]->getTel()?></strong></p>
+							<p class="date text-left"><strong><a href="mailto:<?php echo $a[$i]->getEmail()?>"><?php echo $a[$i]->getEmail()?></a></strong></p>
+							<p class="age text-left"><strong>Возраст: <?php echo $a[$i]->getAge() ?></strong></p>				
+							<p class="date text-left">Дата заполнения: <?php echo $a[$i]->getDate()?></p>	
 							<p class="date text-left">На последнем м/р, мес.: в платной версии)))</p>				
-							<p class="text-left"><strong>Вакансия: </strong><?php echo $value["position"]?></p>
-							<p class="text-justify"><strong>Обязанности: </strong><?php echo $value["responsibilities"]?></p>
-							<p class="text-justify"><strong>Навыки: </strong><?php echo $value["skills"]?></p>
+							<p class="text-left"><strong>Вакансия: </strong><?php echo $a[$i]->getPosition()?></p>
+							<p class="text-justify"><strong>Обязанности: </strong><?php echo $a[$i]->getResponsibilities()?></p>
+							<p class="text-justify"><strong>Навыки: </strong><?php echo $a[$i]->getSkills()?></p>
 						</div>	
 						<div class="post_full_like_wrap">	
 							<div class="col-sm-3"></div>					
-							<div class="col-sm-2"><a id="tooltip" href="?delete=<?php echo $value["id"]?>" title="Удалить"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a></div>
-							<div class="col-sm-2"></div>
+							<div class="col-sm-2"><a id="tooltip" href="?delete=<?php echo $a[$i]->getId()?>" title="Удалить"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a></div>
+							<div class="col-sm-2"><a id="tooltip" href="?print=<?php echo $a[$i]->getId()?>" title="Распечатать"><i class="fa fa-print fa-2x" aria-hidden="true"></i></a></div>
 							<div class="col-sm-2"></div>
 							<div class="col-sm-3"></div>					
 						</div>					
 					</div>
-				<?}?>					
+				<?php }?>					
 				</div>
-			<?}?>					
+			<? endif; ?>					
 			</div>				
 	</div>	
 </section> 

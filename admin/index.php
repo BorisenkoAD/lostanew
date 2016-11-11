@@ -155,7 +155,7 @@ include "dbLib.php";
 			<?}?>
 		</div>
 		</div>
-<a id="anketa"></a>
+ <!--/*<a id="anketa"></a>
 
 		<div class="question"><h2>Анкеты</h2>
  		<div class="row padding-top-40 grid">		
@@ -184,7 +184,7 @@ include "dbLib.php";
 			</div>
 			<?}?>
 		</div>
-		</div>			
+		</div>	*/--> 	
 	</div>
 </section>
 </main>
