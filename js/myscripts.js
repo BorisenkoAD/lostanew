@@ -1,6 +1,10 @@
 // каруселька отзывов
-jQuery(document).ready(function() {
-	$("#owl-reviews").owlCarousel();
+jQuery(document).ready(function() {		 
+	$("#owl-reviews").owlCarousel({	  
+		items : 2,
+		itemsDesktop : [1199,3],
+		itemsDesktopSmall : [979,3]		 
+	});
 });
 // каруселька партнеров	
 jQuery(document).ready(function() {		 

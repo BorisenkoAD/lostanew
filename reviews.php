@@ -60,7 +60,7 @@ catch (RuntimeException $e) {
 		<!-- Include all compiled plugins (below), or include individual files as needed -->
 		<script src="js/bootstrap.min.js"></script>
         <script type="text/javascript">
-           setTimeout('location.replace("/index.htm#reviews")', 3000);
+           setTimeout('location.replace("/reviews.htm")', 3000);
         </script>
 
     </body>

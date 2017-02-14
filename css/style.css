@@ -251,7 +251,7 @@ background-attachment:fixed;
     padding-left: 28px;
 }
 .reviews-block {
-	height: 370px;
+	min-height: 400px;
     background: #fff;
 	padding: 30px 25px 30px 30px;
 	margin: 10px 10px;
